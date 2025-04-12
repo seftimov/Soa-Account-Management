@@ -21,7 +21,7 @@ class KafkaEventConsumer(
         .registerModules(KotlinModule.Builder().build())
         .registerModule(JavaTimeModule())
 
-    @KafkaListener(topics = ["finance-event"])
+    @KafkaListener(topics = ["finance_management.expense.created"])
     fun listen(record: ConsumerRecord<String, String>) {
 
         try {
