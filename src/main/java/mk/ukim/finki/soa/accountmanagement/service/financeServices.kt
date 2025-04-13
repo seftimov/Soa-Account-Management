@@ -11,3 +11,6 @@ interface AccountModificationService {
     fun withdrawMoney(command: WithdrawMoneyCommand): CompletableFuture<AccountId>
 }
 
+interface AccountViewReadService {
+    fun existsAccount(accountId: AccountId): Boolean
+}
