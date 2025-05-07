@@ -1,0 +1,42 @@
+services:
+  accounts_db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: accounts
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "54322:5432"
+    container_name: accounts_db
+    networks:
+      - finance_services_net
+  accounts_backend:
+    depends_on:
+      - accounts_db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: accounts_backend
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://accounts_db:5432/accounts
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_DATASOURCE_SCHEMA: public
+      OPTIMIZE_EVENT_CONSUMPTION: "false"
+      spring.cloud.consul.host: "dev-consul"
+      spring.cloud.discovery.discovery.hostname: "accounts_backend"
+      spring.cloud.discovery.discovery.prefer-ip-address=false: "false"
+    networks:
+      - finance_services_net
+volumes:
+  db-data:
+networks:
+  finance_services_net:
+    external: true
