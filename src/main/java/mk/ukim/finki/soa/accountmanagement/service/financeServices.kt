@@ -1,6 +1,7 @@
 package mk.ukim.finki.soa.accountmanagement.service
 
 import mk.ukim.finki.soa.accountmanagement.model.AccountId
+import mk.ukim.finki.soa.accountmanagement.model.AccountView
 import mk.ukim.finki.soa.accountmanagement.model.CreateAccountCommand
 import mk.ukim.finki.soa.accountmanagement.model.WithdrawMoneyCommand
 import java.util.concurrent.CompletableFuture
@@ -13,4 +14,5 @@ interface AccountModificationService {
 
 interface AccountViewReadService {
     fun existsAccount(accountId: AccountId): Boolean
+    fun getAccountById(accountId: AccountId): AccountView?
 }
