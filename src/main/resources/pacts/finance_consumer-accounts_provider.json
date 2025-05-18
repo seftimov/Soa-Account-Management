@@ -1,0 +1,46 @@
+{
+  "provider": {
+    "name": "accounts_provider"
+  },
+  "consumer": {
+    "name": "finance_consumer"
+  },
+  "interactions": [
+    {
+      "description": "A request to fetch account by ID",
+      "request": {
+        "method": "GET",
+        "path": "/accounts/Account:00000000-0000-0000-0000-000000000000"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": {
+            "value": "Account:00000000-0000-0000-0000-000000000000"
+          },
+          "number": "123456789",
+          "balance": {
+            "amount": 100.5,
+            "currency": "EUR"
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "Account with ID Account:00000000-0000-0000-0000-000000000000 exists"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "3.6.3"
+    }
+  }
+}

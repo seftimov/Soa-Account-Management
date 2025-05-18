@@ -135,6 +135,18 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>au.com.dius</groupId>
+            <artifactId>pact-jvm-provider-junit5_2.12</artifactId>
+            <version>3.6.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>3.0.17</version> <!-- Compatible with Java 17+ -->
+        </dependency>
+
 
     </dependencies>
 
@@ -185,7 +197,6 @@
                     </includes>
                     <forkCount>3</forkCount>
                     <reuseForks>true</reuseForks>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
                 </configuration>
             </plugin>
 
